@@ -21,7 +21,7 @@ int Disassembler::disassemble() {
         uint32_t instr = this->binary[this->index];
 
         cout << internal << setfill('0');
-        cout << "  " << hex << uppercase << setw(4) << this->pc << "    ";
+        cout << "  " << hex << uppercase << setw(4) << this->pc << "   ";
 
         // check R- or I-format
         uint8_t opcode = instr >> 26;
