@@ -24,12 +24,23 @@ public:
 };
 
 class Iformat {
+private:
+    uint32_t instruction;
+    uint32_t pc;
+
 public:
     Iformat(uint32_t, uint32_t);
     int disassemble();
 };
 
 class Rformat {
+private:
+    uint32_t instruction;
+    uint32_t pc;
+    uint32_t src1, src2, dst;
+
 public:
     Rformat(uint32_t, uint32_t);
+    int disassemble();
+    void printRegisters();
 };

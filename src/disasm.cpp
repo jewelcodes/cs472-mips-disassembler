@@ -6,6 +6,7 @@
 
 #include <disasm.h>
 #include <iostream>
+#include <iomanip>
 
 // constructor -- called from main
 Disassembler::Disassembler(uint32_t *b, size_t s) {
@@ -19,16 +20,23 @@ int Disassembler::disassemble() {
     for(this->index = 0; this->index < this->size; this->index++) {
         uint32_t instr = this->binary[this->index];
 
+        cout << internal << setfill('0');
+        cout << "  " << hex << uppercase << setw(4) << this->pc << "    ";
+
         // check R- or I-format
         uint8_t opcode = instr >> 26;
         if(opcode) {
             // I-format
-            Iformat i(instr, this->pc);
-            i.disassemble();
+            cout << "TODO: I-format" << endl;
+            //Iformat i(instr, this->pc);
+            //if(i.disassemble()) return -1;
         } else {
             // R-format
-            cout << "TODO: R-format" << endl;
+            Rformat r(instr, this->pc);
+            if(r.disassemble()) return -1;
         }
+
+        this->pc += 4;
     }
 
     return 0;
