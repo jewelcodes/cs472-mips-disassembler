@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <disasm.h>
 
 using namespace std;
 
