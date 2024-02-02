@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include <cstdint>
+#include <fstream>
 
 using namespace std;
 
@@ -17,7 +17,13 @@ int main(int argc, char **argv) {
 
     // load the file specified in the arguments and then output the disassembly
     // to stdout -- this makes it easy to pipe
-    
-    // TODO
+    ifstream file(argv[1], ios::in | ios::binary | ios::ate);
+    size_t size = file.tellg();     // file size
+    file.clear();
+    file.seekg(0);
+
+    vector<char> buffer(size);
+    file.read(buffer.data(), size);
+
     return 0;
 }
