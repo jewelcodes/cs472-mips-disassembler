@@ -26,5 +26,7 @@ int main(int argc, char **argv) {
     vector<char> buffer(size);
     file.read(buffer.data(), size);
 
-    return 0;
+    // create instance of disassembler
+    Disassembler d((uint32_t *)buffer.data(), size);
+    return d.disassemble();
 }
