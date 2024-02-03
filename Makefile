@@ -12,9 +12,9 @@ clean:
 	@rm -f $(OBJ)
 
 %.o: %.cpp
-	@exec echo -e "\x1B[0;1;35m [  CXX  ]\x1B[0m $@"
+	@echo "\x1B[0;1;32m [  CXX  ]\x1B[0m $@"
 	@$(CXX) $(CXXFLAGS) -o $@ $<
 
 disasm: $(OBJ)
-	@exec echo -e "\x1B[0;1;36m [  LD   ]\x1B[0m disasm"
+	@echo "\x1B[0;1;34m [  LD   ]\x1B[0m disasm"
 	@$(LD) $(LDFLAGS) $(OBJ) -o disasm
