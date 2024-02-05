@@ -41,16 +41,12 @@ void Iformat::printBranch() {
     uint32_t absoluteAddress = this->pc;
     uint32_t branchMagnitude;
     
-    if(this->offset & 0x8000) {
+    if(this->offset & 0x8000) {     // sign bit
         // account for two's complement since we've stored this in an unsigned int
         branchMagnitude = ((~this->offset) + 1) & 0xFFFF;
-    } else {
-        branchMagnitude = this->offset;
-    }
-
-    if(this->offset & 0x8000) {
         absoluteAddress -= branchMagnitude;
     } else {
+        branchMagnitude = this->offset;
         absoluteAddress += branchMagnitude;
     }
 
@@ -71,7 +67,7 @@ int Iformat::disassemble() {
         cout << opcodes[opcode];
         
         // this is slightly different between branching and loads/stores
-        // so separate them here
+        // so we can separate them here
         if(opcode == OPCODE_BEQ || opcode == OPCODE_BNE) {
             this->printBranch();
         } else {
