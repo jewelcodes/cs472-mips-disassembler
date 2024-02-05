@@ -29,6 +29,7 @@ Rformat::Rformat(uint32_t instr, uint32_t pc) {
     this->dst = (instr >> 11) & 0x1F;
 }
 
+// prints out $reg, $reg, $reg
 void Rformat::printRegisters() {
     cout << " " << dec << setw(0);
     cout << "$" << dec << this->dst << ", ";
