@@ -8,6 +8,18 @@
 #include <iostream>
 #include <iomanip>
 
+// function code lookup table
+static string functionCodes[64] = {
+    "", "", "", "", "", "", "", "",         // 0x00
+    "", "", "", "", "", "", "", "",         // 0x08
+    "", "", "", "", "", "", "", "",         // 0x10
+    "", "", "", "", "", "", "", "",         // 0x18
+    "add", "", "sub", "", "and", "or", "", "",         // 0x20
+    "", "", "slt", "", "", "", "", "",         // 0x28
+    "", "", "", "", "", "", "", "",         // 0x30
+    "", "", "", "", "", "", "", "",         // 0x38
+};
+
 // constructor
 Rformat::Rformat(uint32_t instr, uint32_t pc) {
     this->instruction = instr;
@@ -23,18 +35,6 @@ void Rformat::printRegisters() {
     cout << "$" << dec << src1 << ", ";
     cout << "$" << dec << src2 << endl;
 }
-
-// function code lookup table
-static string functionCodes[64] = {
-    "", "", "", "", "", "", "", "",         // 0x00
-    "", "", "", "", "", "", "", "",         // 0x08
-    "", "", "", "", "", "", "", "",         // 0x10
-    "", "", "", "", "", "", "", "",         // 0x18
-    "add", "", "sub", "", "and", "or", "", "",         // 0x20
-    "", "", "slt", "", "", "", "", "",         // 0x28
-    "", "", "", "", "", "", "", "",         // 0x30
-    "", "", "", "", "", "", "", "",         // 0x38
-};
 
 int Rformat::disassemble() {
     uint32_t func = this->instruction & 0x3F;    // function code
