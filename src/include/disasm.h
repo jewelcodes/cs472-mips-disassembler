@@ -27,6 +27,7 @@ class Iformat {
 private:
     uint32_t instruction;
     uint32_t pc;
+    uint32_t left, right, offset;
 
 public:
     Iformat(uint32_t, uint32_t);

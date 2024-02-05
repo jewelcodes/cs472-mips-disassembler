@@ -23,15 +23,14 @@ int Disassembler::disassemble() {
         cout << internal << setfill('0');
         cout << "  " << hex << uppercase << setw(4) << this->pc << "   ";
 
-        // check R- or I-format
+        // check R- or I-format from the opcode
         uint8_t opcode = instr >> 26;
         if(opcode) {
-            // I-format
-            cout << "TODO: I-format" << endl;
-            //Iformat i(instr, this->pc);
-            //if(i.disassemble()) return -1;
+            // I-format has any non-zero opcode
+            Iformat i(instr, this->pc);
+            if(i.disassemble()) return -1;
         } else {
-            // R-format
+            // R-format opcodes are always zero
             Rformat r(instr, this->pc);
             if(r.disassemble()) return -1;
         }
