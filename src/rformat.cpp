@@ -40,7 +40,7 @@ int Rformat::disassemble() {
     uint32_t func = this->instruction & 0x3F;    // function code
 
     if(functionCodes[func].empty()) {
-        cout << "undefined R-format instruction: function code 0x" << hex << uppercase << setw(2) << (int)func << endl;
+        cout << "undefined R-format instruction: function code 0x" << hex << uppercase << setw(2) << func << endl;
         return 0;
     } else {
         cout << functionCodes[func];
