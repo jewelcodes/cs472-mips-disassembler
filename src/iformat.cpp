@@ -8,9 +8,13 @@
 #include <iostream>
 #include <iomanip>
 
+// for branching
+#define OPCODE_BEQ      0x04
+#define OPCODE_BNE      0x05
+
 // opcode lookup table
 static string opcodes[64] = {
-    "", "", "", "", "", "", "", "",         // 0x00
+    "", "", "", "", "beq", "bne", "", "",         // 0x00
     "", "", "", "", "", "", "", "",         // 0x08
     "", "", "", "", "", "", "", "",         // 0x10
     "", "", "", "", "", "", "", "",         // 0x18
@@ -28,15 +32,52 @@ Iformat::Iformat(uint32_t instr, uint32_t pc) {
     this->offset = instr & 0xFFFF;
 }
 
+void Iformat::printBranch() {
+    cout << " " << dec << setw(0);
+    cout << "$" << dec << this->left << ", ";
+    cout << "$" << dec << this->right << ", ";
+
+    // for branching, addressing is relative to PC and the offset is a signed 16-bit number
+    uint32_t absoluteAddress = this->pc;
+    uint32_t branchMagnitude;
+    
+    if(this->offset & 0x8000) {
+        // account for two's complement since we've stored this in an unsigned int
+        branchMagnitude = ((~this->offset) + 1) & 0xFFFF;
+    } else {
+        branchMagnitude = this->offset;
+    }
+
+    if(this->offset & 0x8000) {
+        absoluteAddress -= branchMagnitude;
+    } else {
+        absoluteAddress += branchMagnitude;
+    }
+
+    cout << "0x" << hex << setw(8) << absoluteAddress << endl;
+}
+
+void Iformat::printRegistersOffset() {
+    // TODO
+}
+
 int Iformat::disassemble() {
     uint32_t opcode = this->instruction >> 26;
 
     if(opcodes[opcode].empty()) {
-        cout << "undefined I-format instruction: opcode code 0x" << hex << uppercase << setw(2) << opcode << endl;
+        cout << "undefined I-format instruction: opcode 0x" << hex << uppercase << setw(2) << opcode << endl;
         return 0;
     } else {
         cout << opcodes[opcode];
-        //this->printRegistersOffset();
+        
+        // this is slightly different between branching and loads/stores
+        // so separate them here
+        if(opcode == OPCODE_BEQ || opcode == OPCODE_BNE) {
+            this->printBranch();
+        } else {
+            this->printRegistersOffset();
+        }
+
         return 0;
     }
 }

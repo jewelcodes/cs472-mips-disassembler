@@ -32,6 +32,8 @@ private:
 public:
     Iformat(uint32_t, uint32_t);
     int disassemble();
+    void printBranch();
+    void printRegistersOffset();
 };
 
 class Rformat {
