@@ -24,6 +24,7 @@ static string opcodes[64] = {
     "", "", "", "", "", "", "", "",         // 0x38
 };
 
+// Constructor
 Iformat::Iformat(uint32_t instr, uint32_t pc) {
     this->instruction = instr;
     this->pc = pc;
@@ -32,7 +33,7 @@ Iformat::Iformat(uint32_t instr, uint32_t pc) {
     this->offset = instr & 0xFFFF;
 }
 
-void Iformat::printBranch() {
+void Iformat::printBranch() {   // in the format of $reg, $reg, ADDRESS IN HEX
     cout << " " << dec << setw(0);
     cout << "$" << dec << this->left << ", ";
     cout << "$" << dec << this->right << ", ";
@@ -53,7 +54,7 @@ void Iformat::printBranch() {
     cout << "0x" << hex << uppercase << setw(8) << absoluteAddress << endl;
 }
 
-void Iformat::printRegistersOffset() {
+void Iformat::printRegistersOffset() {  // in the format of $register, OFFSET IN SIGNED DECIMAL($register)
     cout << " " << dec << setw(0);
     cout << "$" << dec << this->right << ", ";
     
