@@ -18,8 +18,8 @@ static string opcodes[64] = {
     "", "", "", "", "", "", "", "",         // 0x08
     "", "", "", "", "", "", "", "",         // 0x10
     "", "", "", "", "", "", "", "",         // 0x18
-    "", "", "", "", "", "", "", "",         // 0x20
-    "", "", "", "", "", "", "", "",         // 0x28
+    "", "", "", "lw", "", "", "", "",         // 0x20
+    "", "", "", "sw", "", "", "", "",         // 0x28
     "", "", "", "", "", "", "", "",         // 0x30
     "", "", "", "", "", "", "", "",         // 0x38
 };
@@ -50,11 +50,25 @@ void Iformat::printBranch() {
         absoluteAddress += branchMagnitude;
     }
 
-    cout << "0x" << hex << setw(8) << absoluteAddress << endl;
+    cout << "0x" << hex << uppercase << setw(8) << absoluteAddress << endl;
 }
 
 void Iformat::printRegistersOffset() {
-    // TODO
+    cout << " " << dec << setw(0);
+    cout << "$" << dec << this->right << ", ";
+    
+    // offset is SIGNED here
+    uint32_t fixedOffset;
+
+    if(this->offset & 0x8000) {     // sign bit
+        fixedOffset = ((~this->offset) + 1) & 0xFFFF;
+        cout << "-";
+    } else {
+        fixedOffset = this->offset;
+    }
+
+    cout << dec << fixedOffset << "(";
+    cout << "$" << dec << this->left << ")" << endl;
 }
 
 int Iformat::disassemble() {
