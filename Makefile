@@ -20,7 +20,7 @@ disasm: $(OBJ)
 	@$(LD) $(LDFLAGS) $(OBJ) -o disasm
 
 sample:
-	@echo "\x1B[0;1;32m [  CXX  ]\x1B[0m sample.cpp"
+	@echo "\x1B[0;1;32m [  CXX  ]\x1B[0m helper/sample.cpp"
 	@$(CXX) $(CXXFLAGS) -o helper/sample.o helper/sample.cpp
 	@echo "\x1B[0;1;34m [  LD   ]\x1B[0m sample"
 	@$(LD) $(LDFLAGS) helper/sample.o -o sample
