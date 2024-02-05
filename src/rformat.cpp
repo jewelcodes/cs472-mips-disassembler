@@ -31,9 +31,9 @@ Rformat::Rformat(uint32_t instr, uint32_t pc) {
 
 void Rformat::printRegisters() {
     cout << " " << dec << setw(0);
-    cout << "$" << dec << dst << ", ";
-    cout << "$" << dec << src1 << ", ";
-    cout << "$" << dec << src2 << endl;
+    cout << "$" << dec << this->dst << ", ";
+    cout << "$" << dec << this->src1 << ", ";
+    cout << "$" << dec << this->src2 << endl;
 }
 
 int Rformat::disassemble() {
