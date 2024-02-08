@@ -23,6 +23,8 @@ int Disassembler::disassemble() {
         cout << internal << setfill('0');
         cout << "  " << hex << uppercase << setw(4) << this->pc << "   ";
 
+        this->pc += 4;      // PC is incremented *before* decoding
+
         // check R- or I-format from the opcode
         uint8_t opcode = instr >> 26;
         if(opcode) {
@@ -35,7 +37,7 @@ int Disassembler::disassemble() {
             if(r.disassemble()) return -1;
         }
 
-        this->pc += 4;
+        //this->pc += 4;    // moved to the top
     }
 
     return 0;

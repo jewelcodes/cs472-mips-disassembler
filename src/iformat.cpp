@@ -45,9 +45,11 @@ void Iformat::printBranch() {   // in the format of $reg, $reg, ADDRESS IN HEX
     if(this->offset & 0x8000) {     // sign bit
         // account for two's complement since we've stored this in an unsigned int
         branchMagnitude = ((~this->offset) + 1) & 0xFFFF;
+        branchMagnitude <<= 2;
         absoluteAddress -= branchMagnitude;
     } else {
         branchMagnitude = this->offset;
+        branchMagnitude <<= 2;
         absoluteAddress += branchMagnitude;
     }
 
