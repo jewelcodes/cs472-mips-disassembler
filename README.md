@@ -3,7 +3,8 @@ Self-explanatory title. This is the first project for MET CS 472 (Computer Archi
 ## Input
 The helper program in helper/ basically just writes the array given in the assignment into a file called sample.bin, so that the main disassembler in src/ can read its input from a file. This was not required but the assignment did mention some of this code would need to be reused for another project, so I figured this would be a better approach than to hardcode the instructions into the disassembler itself. The instructions are:
 ```c
-uint32_t instructions[] = { 0x032BA020, 0x8CE90014, 0x12A90003, 0x022DA822, 0xADB30020, 0x02697824,0xAE8FFFF4, 0x018C6020, 0x02A4A825, 0x158FFFF7, 0x8ECDFFF0 };
+{ 0x032BA020, 0x8CE90014, 0x12A90003, 0x022DA822, 0xADB30020, 0x02697824,
+  0xAE8FFFF4, 0x018C6020, 0x02A4A825, 0x158FFFF7, 0x8ECDFFF0 }
 ```
 ## Output
 ```
