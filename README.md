@@ -7,7 +7,7 @@ The helper program in helper/ basically just writes the array given in the assig
   0xAE8FFFF4, 0x018C6020, 0x02A4A825, 0x158FFFF7, 0x8ECDFFF0 }
 ```
 ## Output
-```
+```asm
   9A040   add $20, $25, $11
   9A044   lw $9, 20($7)
   9A048   beq $21, $9, 0x0009A058
