@@ -21,3 +21,6 @@ The helper program in helper/ basically just writes the array given in the assig
   9A068   lw $13, -16($22)
 ```
 Plaintext output is also in output.asm.
+
+## References
+The reference I used for the MIPS instruction encoding is in docs/ and the original can be found [here](https://uweb.engr.arizona.edu/~ece369/Resources/spim/MIPSReference.pdf). 
