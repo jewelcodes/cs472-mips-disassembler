@@ -3,6 +3,8 @@ Self-explanatory title. This is the first project for MET CS 472 (Computer Archi
 
 The lb, sb, and nop instructions were added later in the semester (after submission) while working on the third project (MIPS pipeline emulator) to cross-reference what was happening and verify that my output looks like what I expect it to.
 
+**Update:** This scored 100%.
+
 ## Input
 The helper program in helper/ basically just writes the array given in the assignment into a file called sample.bin, so that the main disassembler in src/ can read its input from a file. This was not required but the assignment did mention some of this code would need to be reused for another project, so I figured this would be a better approach than to hardcode the instructions into the disassembler itself. The instructions are:
 ```c
